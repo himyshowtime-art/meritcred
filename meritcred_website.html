@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MeritCred 咨询</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Noto Sans SC', sans-serif;
+      background: linear-gradient(180deg, #f8fafc, #eef2ff);
+      color: #1e293b;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px 40px;
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #e2e8f0;
+      position: sticky;
+      top: 0;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #334155;
+      font-weight: 500;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 100px 20px 60px;
+    }
+
+    .hero h2 {
+      font-size: 42px;
+      margin-bottom: 20px;
+      background: linear-gradient(90deg, #2563eb, #6366f1);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 700px;
+      margin: auto;
+      color: #64748b;
+      font-size: 18px;
+    }
+
+    .section {
+      padding: 60px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      font-size: 18px;
+    }
+
+    .card p {
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    .contact {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>MeritCred 咨询</h1>
+  <nav>
+    <a href="#">首页</a>
+    <a href="#services">服务</a>
+    <a href="#about">关于</a>
+    <a href="#contact">联系</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2>全球人才评估与跨境教育咨询</h2>
+  <p>MeritCred 咨询专注于全球人才评估、教育体系分析与劳动力流动研究，为高校与机构提供结构化的人才评估与决策支持。</p>
+</section>
+
+<section class="section" id="services">
+  <h2>我们的服务</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>全球人才评估</h3>
+      <p>跨国家教育背景与职业路径的系统评估</p>
+    </div>
+    <div class="card">
+      <h3>教育与劳动力咨询</h3>
+      <p>支持国际人才流动与教育路径分析</p>
+    </div>
+    <div class="card">
+      <h3>背景审核支持</h3>
+      <p>学术与职业经历结构化分析</p>
+    </div>
+    <div class="card">
+      <h3>政策研究</h3>
+      <p>教育与人才流动相关政策分析</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <h2>关于我们</h2>
+  <p>MeritCred 咨询成立于北京，团队具备国际组织与教育政策研究背景，致力于提升跨体系人才评估的准确性与专业性。</p>
+</section>
+
+<section class="section" id="contact">
+  <h2>联系我们</h2>
+  <div class="contact">
+    <p><strong>地址：</strong>北京市东城区南竹杆胡同2号 银河SOHO A座11102</p>
+    <p><strong>电话：</strong>17801763370</p>
+    <p><strong>邮箱：</strong>tianyi.zhao@meritcred.com</p>
+    <p><strong>网站：</strong>www.meritcred.com</p>
+  </div>
+</section>
+
+<footer>
+  © 2026 MeritCred Consulting Ltd.
+</footer>
+
+</body>
+</html>
