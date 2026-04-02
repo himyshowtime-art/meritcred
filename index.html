@@ -4,166 +4,599 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MeritCred 咨询</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg: #f5f7fb;
+      --text: #1f2a44;
+      --muted: #5f6f8f;
+      --line: #dfe5f0;
+      --white: #ffffff;
+      --blue: #4b6bff;
+      --blue-dark: #2847d8;
+      --blue-soft: #eef2ff;
+      --shadow: 0 16px 40px rgba(34, 55, 120, 0.08);
+      --radius: 22px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       font-family: 'Noto Sans SC', sans-serif;
-      background: linear-gradient(180deg, #f8fafc, #eef2ff);
-      color: #1e293b;
+      background: linear-gradient(180deg, #f7f9fc 0%, #eef2f9 100%);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(calc(100% - 36px), var(--max));
+      margin: 0 auto;
     }
 
     header {
-      display: flex;
-      justify-content: space-between;
-      padding: 20px 40px;
-      background: rgba(255,255,255,0.8);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid #e2e8f0;
       position: sticky;
       top: 0;
+      z-index: 50;
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(223,229,240,0.9);
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 20px;
-      font-weight: 700;
-    }
-
-    nav a {
-      margin-left: 20px;
-      text-decoration: none;
-      color: #334155;
-      font-weight: 500;
-    }
-
-    .hero {
-      text-align: center;
-      padding: 100px 20px 60px;
-    }
-
-    .hero h2 {
-      font-size: 42px;
-      margin-bottom: 20px;
-      background: linear-gradient(90deg, #2563eb, #6366f1);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .hero p {
-      max-width: 700px;
-      margin: auto;
-      color: #64748b;
-      font-size: 18px;
-    }
-
-    .section {
-      padding: 60px 20px;
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0;
       gap: 20px;
     }
 
-    .card {
-      background: white;
-      padding: 24px;
+    .brand {
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .brand span {
+      color: var(--blue);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      font-size: 15px;
+      font-weight: 600;
+      color: #344563;
+    }
+
+    .hero {
+      padding: 84px 0 54px;
+    }
+
+    .hero-wrap {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-card {
+      background: linear-gradient(135deg, #ffffff 0%, #f6f8ff 100%);
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      padding: 56px 50px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      right: -80px;
+      top: -80px;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, rgba(75,107,255,0.18) 0%, rgba(75,107,255,0) 72%);
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: var(--blue-dark);
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: clamp(40px, 6vw, 64px);
+      line-height: 1.06;
+      letter-spacing: -0.05em;
+      color: var(--blue);
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      color: var(--muted);
+      margin: 0 0 28px;
+      max-width: 700px;
+    }
+
+    .hero-points {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .point {
+      background: rgba(255,255,255,0.85);
+      border: 1px solid #e6ebf5;
       border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-      transition: transform 0.2s ease;
+      padding: 14px 16px;
+      color: #405170;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .hero-image {
+      border-radius: 32px;
+      overflow: hidden;
+      min-height: 100%;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line);
+      background: #dfe7f7;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    section {
+      padding: 26px 0;
+    }
+
+    .section-title {
+      margin-bottom: 18px;
+    }
+
+    .section-title .eyebrow {
+      color: var(--blue-dark);
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 34px;
+      letter-spacing: -0.03em;
+    }
+
+    .section-title p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      max-width: 760px;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.92);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 26px 24px;
+      box-shadow: 0 10px 30px rgba(34, 55, 120, 0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-4px);
+      box-shadow: 0 18px 42px rgba(34, 55, 120, 0.08);
+    }
+
+    .card-number {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: var(--blue-soft);
+      color: var(--blue-dark);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      margin-bottom: 14px;
     }
 
     .card h3 {
-      margin-top: 0;
-      font-size: 18px;
+      margin: 0 0 10px;
+      font-size: 20px;
     }
 
     .card p {
-      color: #64748b;
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .about-wrap {
+      display: grid;
+      grid-template-columns: 1.06fr 0.94fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .about-box, .team-box, .contact-box {
+      background: rgba(255,255,255,0.94);
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      padding: 30px;
+      box-shadow: 0 12px 32px rgba(34, 55, 120, 0.05);
+    }
+
+    .about-box p, .team-box p, .contact-box p {
+      margin: 0 0 16px;
+      color: #4f6181;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .stat {
+      border: 1px solid #e5eaf3;
+      border-radius: 18px;
+      padding: 18px 16px;
+      background: #fafcff;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 24px;
+      color: var(--blue-dark);
+      margin-bottom: 4px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .team-list {
+      display: grid;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .team-member {
+      border: 1px solid #e7ecf5;
+      border-radius: 18px;
+      padding: 18px 18px;
+      background: #fbfcff;
+    }
+
+    .team-member strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    .team-member .role {
+      color: var(--blue-dark);
+      font-weight: 700;
+      margin-bottom: 8px;
       font-size: 14px;
     }
 
-    .contact {
-      background: #ffffff;
-      border-radius: 16px;
-      padding: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .gallery-card {
+      background: rgba(255,255,255,0.95);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(34, 55, 120, 0.05);
+    }
+
+    .gallery-card img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+
+    .gallery-caption {
+      padding: 16px 18px 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .contact-item {
+      padding: 18px 0;
+      border-bottom: 1px solid #e7edf6;
+    }
+
+    .contact-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #7d8cab;
+      font-weight: 700;
+      margin-bottom: 6px;
     }
 
     footer {
-      text-align: center;
-      padding: 40px;
-      color: #94a3b8;
+      padding: 38px 0 60px;
+      color: #6f7e9c;
       font-size: 14px;
     }
 
+    @media (max-width: 980px) {
+      .hero-wrap, .about-wrap, .contact-grid, .service-grid, .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      .stats, .hero-points {
+        grid-template-columns: 1fr;
+      }
+      .hero-card {
+        padding: 36px 26px;
+      }
+      .hero-image img {
+        min-height: 320px;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-links {
+        gap: 18px;
+      }
+      h1 {
+        font-size: 40px;
+      }
+      .section-title h2 {
+        font-size: 28px;
+      }
+    }
   </style>
 </head>
 <body>
-
-<header>
-  <h1>MeritCred 咨询</h1>
-  <nav>
-    <a href="#">首页</a>
-    <a href="#services">服务</a>
-    <a href="#about">关于</a>
-    <a href="#contact">联系</a>
-  </nav>
-</header>
-
-<section class="hero">
-  <h2>全球人才评估与跨境教育咨询</h2>
-  <p>MeritCred 咨询专注于全球人才评估、教育体系分析与劳动力流动研究，为高校与机构提供结构化的人才评估与决策支持。</p>
-</section>
-
-<section class="section" id="services">
-  <h2>我们的服务</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>全球人才评估</h3>
-      <p>跨国家教育背景与职业路径的系统评估</p>
+  <header>
+    <div class="container nav">
+      <div class="brand">MeritCred <span>咨询</span></div>
+      <nav class="nav-links">
+        <a href="#home">首页</a>
+        <a href="#services">服务</a>
+        <a href="#about">关于</a>
+        <a href="#team">团队</a>
+        <a href="#gallery">办公环境</a>
+        <a href="#contact">联系</a>
+      </nav>
     </div>
-    <div class="card">
-      <h3>教育与劳动力咨询</h3>
-      <p>支持国际人才流动与教育路径分析</p>
-    </div>
-    <div class="card">
-      <h3>背景审核支持</h3>
-      <p>学术与职业经历结构化分析</p>
-    </div>
-    <div class="card">
-      <h3>政策研究</h3>
-      <p>教育与人才流动相关政策分析</p>
-    </div>
-  </div>
-</section>
+  </header>
 
-<section class="section" id="about">
-  <h2>关于我们</h2>
-  <p>MeritCred 咨询成立于北京，团队具备国际组织与教育政策研究背景，致力于提升跨体系人才评估的准确性与专业性。</p>
-</section>
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-wrap">
+        <div class="hero-card">
+          <div class="tag">Global Talent Advisory</div>
+          <h1>全球人才评估与<br>人才解决方案咨询</h1>
+          <p class="hero-sub">
+            MeritCred 咨询聚焦全球人才配置、人才评估、跨境招聘支持与组织人才策略服务，面向企业、机构及合作伙伴提供更高效、更结构化的人才解决方案。
+          </p>
+          <div class="hero-points">
+            <div class="point">人才评估与岗位匹配</div>
+            <div class="point">跨境招聘支持</div>
+            <div class="point">组织人才咨询</div>
+            <div class="point">政府及机构项目对接</div>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="office-lobby.jpg" alt="办公环境" />
+        </div>
+      </div>
+    </section>
 
-<section class="section" id="contact">
-  <h2>联系我们</h2>
-  <div class="contact">
-    <p><strong>地址：</strong>北京市东城区南竹杆胡同2号 银河SOHO A座11102</p>
-    <p><strong>电话：</strong>17801763370</p>
-    <p><strong>邮箱：</strong>tianyi.zhao@meritcred.com</p>
-    <p><strong>网站：</strong>www.meritcred.com</p>
-  </div>
-</section>
+    <section id="services">
+      <div class="container">
+        <div class="section-title">
+          <div class="eyebrow">Services</div>
+          <h2>我们的服务</h2>
+          <p>围绕人才识别、人才配置、跨境招聘协同与机构合作需求，提供兼顾执行效率与项目质量的专业支持。</p>
+        </div>
+        <div class="service-grid">
+          <div class="card">
+            <div class="card-number">01</div>
+            <h3>全球人才评估</h3>
+            <p>结合岗位需求、候选人经历、行业背景与跨文化适配度，提供更具结构性的人才评估支持，帮助用人方提升筛选效率与判断质量。</p>
+          </div>
+          <div class="card">
+            <div class="card-number">02</div>
+            <h3>跨境招聘支持</h3>
+            <p>服务涉及国际化岗位协同、人才寻访、候选人沟通及流程对接，支持企业与机构在跨区域环境下更顺畅地推进招聘与合作。</p>
+          </div>
+          <div class="card">
+            <div class="card-number">03</div>
+            <h3>人才解决方案咨询</h3>
+            <p>根据业务发展阶段、岗位结构与项目周期，为客户提供人才配置建议、团队搭建支持与阶段性人才策略服务。</p>
+          </div>
+          <div class="card">
+            <div class="card-number">04</div>
+            <h3>政府与机构项目对接</h3>
+            <p>围绕区域人才引进、项目合作与资源对接需求，提供项目联络、前期沟通与协同支持，促进多方高效衔接与落地执行。</p>
+          </div>
+          <div class="card">
+            <div class="card-number">05</div>
+            <h3>行业人才研究</h3>
+            <p>持续关注不同行业的人才流动趋势、岗位能力变化与国际化用人需求，为客户提供更贴近市场实际的人才判断参考。</p>
+          </div>
+          <div class="card">
+            <div class="card-number">06</div>
+            <h3>合作伙伴支持</h3>
+            <p>为企业、机构与项目合作方提供稳定的信息协调、人才沟通及项目配合支持，满足多场景、多角色的合作需求。</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<footer>
-  © 2026 MeritCred Consulting Ltd.
-</footer>
+    <section id="about">
+      <div class="container about-wrap">
+        <div class="about-box">
+          <div class="section-title">
+            <div class="eyebrow">About Us</div>
+            <h2>关于 MeritCred</h2>
+          </div>
+          <p>
+            MeritCred 咨询立足北京，专注于全球人才评估、人才解决方案与跨境招聘相关服务。我们关注的不只是候选人与岗位之间的基本匹配，更重视组织需求、行业环境、国际化协同与长期发展之间的整体衔接。
+          </p>
+          <p>
+            在实际项目中，我们通常围绕岗位理解、人才画像梳理、候选人沟通、跨区域协同与项目推进效率等关键环节展开工作，为客户提供更清晰、更稳定、更具执行力的人才支持方案。面对不同类型的企业、机构与合作项目，我们强调沟通效率、专业判断与落地能力的平衡。
+          </p>
+          <p>
+            我们的工作覆盖企业招聘需求支持、国际化人才协作、机构合作对接及人才资源整合等多个场景。随着市场对跨文化沟通能力、复合型岗位能力与国际化项目经验的重视不断提升，MeritCred 也持续完善自身在人才识别、项目协同与合作支持方面的方法与服务框架。
+          </p>
+          <div class="stats">
+            <div class="stat">
+              <strong>国际化</strong>
+              <span>聚焦跨区域人才协同与沟通</span>
+            </div>
+            <div class="stat">
+              <strong>结构化</strong>
+              <span>强调岗位理解与人才判断框架</span>
+            </div>
+            <div class="stat">
+              <strong>执行导向</strong>
+              <span>注重对接效率与项目落地</span>
+            </div>
+          </div>
+        </div>
+        <div class="team-box" id="team">
+          <div class="section-title">
+            <div class="eyebrow">Leadership</div>
+            <h2>合伙人团队</h2>
+          </div>
+          <p>MeritCred 由具备国际化项目沟通、人才评估与机构协同经验的合伙人共同推进日常业务与合作项目。</p>
+          <div class="team-list">
+            <div class="team-member">
+              <strong>Tianyi Zhao</strong>
+              <div class="role">合伙人</div>
+              <div>邮箱：<a href="mailto:tianyi.zhao@meritcred.com">tianyi.zhao@meritcred.com</a></div>
+            </div>
+            <div class="team-member">
+              <strong>Yiling Chen</strong>
+              <div class="role">合伙人</div>
+              <div>邮箱：<a href="mailto:Yiling.Chen@meritcred.com">Yiling.Chen@meritcred.com</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <section id="gallery">
+      <div class="container">
+        <div class="section-title">
+          <div class="eyebrow">Office</div>
+          <h2>办公环境</h2>
+          <p>以下为办公空间实景展示，可用于呈现接待区域与日常办公区域。</p>
+        </div>
+        <div class="gallery-grid">
+          <div class="gallery-card">
+            <img src="office-lobby.jpg" alt="办公接待区域" />
+            <div class="gallery-caption">办公接待区域</div>
+          </div>
+          <div class="gallery-card">
+            <img src="office-workspace.jpg" alt="办公区域" />
+            <div class="gallery-caption">开放办公区域</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container contact-grid">
+        <div class="contact-box">
+          <div class="section-title">
+            <div class="eyebrow">Contact</div>
+            <h2>联系我们</h2>
+          </div>
+          <div class="contact-item">
+            <div class="label">公司名称</div>
+            <div>MeritCred Consulting Ltd.</div>
+          </div>
+          <div class="contact-item">
+            <div class="label">办公地址</div>
+            <div>北京市东城区南竹杆胡同 2 号 银河SOHO A座 11102</div>
+          </div>
+          <div class="contact-item">
+            <div class="label">联系电话</div>
+            <div>17801763370</div>
+          </div>
+          <div class="contact-item">
+            <div class="label">官方网站</div>
+            <div>www.meritcred.com</div>
+          </div>
+        </div>
+        <div class="contact-box">
+          <div class="section-title">
+            <div class="eyebrow">Partner Contacts</div>
+            <h2>合伙人联系邮箱</h2>
+          </div>
+          <div class="contact-item">
+            <div class="label">Tianyi Zhao</div>
+            <div><a href="mailto:tianyi.zhao@meritcred.com">tianyi.zhao@meritcred.com</a></div>
+          </div>
+          <div class="contact-item">
+            <div class="label">Yiling Chen</div>
+            <div><a href="mailto:Yiling.Chen@meritcred.com">Yiling.Chen@meritcred.com</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© 2026 MeritCred Consulting Ltd. All rights reserved.</div>
+  </footer>
 </body>
 </html>
